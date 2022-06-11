@@ -1,8 +1,6 @@
 <div align="center">
 <img src="https://i.postimg.cc/tTvxFtv5/banner.png" alt="Midubot Banner" width="90%"/>
-<p>
 <h3><b>Discord bot for <a href="https://midu.dev/" target="_blank">midudev</a> server</b></h3>
-</p>
 </div>
 
 ## 📦 Packages:
