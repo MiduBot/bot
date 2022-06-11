@@ -1,6 +1,7 @@
 <div align="center">
-<img src="https://i.postimg.cc/tTvxFtv5/banner.png" alt="Midubot Banner" width="90%"/>
-<h3><b>Discord bot for <a href="https://midu.dev/" target="_blank">midudev</a> server</b></h3>
+<img src="https://i.postimg.cc/x1Gm5Fff/midubot-banner.png" alt="Midubot Banner" width="80%"/>
+<h3><b>🤖 Discord bot for <a href="https://midu.dev/" target="_blank">midudev</a> server</b></h3>
+</br>
 </div>
 
 ## 📦 Packages:
@@ -24,7 +25,7 @@
 pnpm install
 ```
 
-3. Create .env file in the root directory ([example here](https://github.com/MiduBot/bot/blob/develop/.env.example)):
+3. Create .env file in the root directory:
 
 ```
 DISCORD_TOKEN=
@@ -34,6 +35,11 @@ DISCORD_ID=
 DISCORD_PUBLIC=
 
 DISCORD_INTENTS=
+```
+or copy [.env.example](https://github.com/MiduBot/bot/blob/develop/.env.example):
+
+```
+cp .env.example .env
 ```
 
 ## 🙌 Contributing:
