@@ -1,8 +1,8 @@
-import "dotenv/config";
-import Discord from "discord.js";
+import 'dotenv/config'
+import Discord from 'discord.js'
 
 const client = new Discord.Client({
-  intents: [Number(process.env.DISCORD_INTENTS)],
-});
+  intents: [Number(process.env.DISCORD_INTENTS)]
+})
 
-client.login();
+client.login()
