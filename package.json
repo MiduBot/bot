@@ -1,0 +1,14 @@
+{
+  "name": "bot",
+  "version": "0.0.0",
+  "description": "Bot for MiduDev sv",
+  "main": "dist/index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": {
+    "name": "Hyuuh",
+    "email": "lilhyuuh@gmail.com",
+    "url": "https://github.com/Hyuuh"
+  },
+  "license": "MIT"
+}
