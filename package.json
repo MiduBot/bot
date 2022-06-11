@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "description": "Bot for MiduDev sv",
   "main": "dist/index.js",
-  "scripts": {},
+  "scripts": {
+    "dev": "ts-node-dev src/index.ts"
+  },
   "keywords": [],
   "author": {
     "name": "Hyuuh",
