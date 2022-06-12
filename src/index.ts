@@ -1,12 +1,10 @@
-import "dotenv/config";
-import Discord from "discord.js";
+import 'dotenv/config'
+import MiduBot from './lib/Client'
 
-const client = new Discord.Client({
-  intents: [Number(process.env.DISCORD_INTENTS)],
-});
+const client = new MiduBot()
 
-client.once("ready", () => {
-  console.log("🥳 Bot is ready!");
-});
+client.once('ready', () => {
+  console.log('🥳 Bot is ready!')
+})
 
-client.login(process.env.DISCORD_TOKEN);
+client.login(process.env.DISCORD_TOKEN)
