@@ -1,12 +1,23 @@
-import "dotenv/config";
-import Discord from "discord.js";
+import 'dotenv/config'
+import MiduClient from './lib/MiduClient'
 
-const client = new Discord.Client({
-  intents: [Number(process.env.DISCORD_INTENTS)],
-});
+// eslint-disable-next-line no-unused-vars
+const client = new MiduClient()
 
-client.once("ready", () => {
-  console.log("🥳 Bot is ready!");
-});
+client.on('messageCreate', async (message) => {
+  if (message.author.bot) return
+  const prefix = `${process.env.DISCORD_PREFIX}`
+  if (!message.content.startsWith(prefix)) return
+  const args = message.content.slice(prefix.length).trim().split(/ +/g)
+  const commandName = args?.shift()?.toLowerCase()
+  const command = client.commandHandler.modules.find(m => m.aliases.includes(`${commandName}`))
+  console.log('Command', command)
+  console.log('CommandName', commandName)
+  if (!command) return
 
-client.login(process.env.DISCORD_TOKEN);
+  try {
+    command.run(message, args)
+  } catch (error) {
+    console.error(error)
+  }
+})
