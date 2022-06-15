@@ -21,8 +21,7 @@ class BaseHandler extends EventEmitter {
   register (mod: BaseModule, filepath: string) {
     mod.filepath = filepath
     this.modules.set(mod.id, mod)
-
-    if (mod.categoryID !== 'default') return
+    console.log(`Registered module ${mod.id}`)
     const dirs = path.dirname(filepath).split(path.sep)
     mod.categoryID = dirs[dirs.length - 1]
   }
@@ -33,11 +32,10 @@ class BaseHandler extends EventEmitter {
   }
 
   load (filepath: string, isReload: boolean = false) {
-    console.log('path', filepath)
     let mod = require(filepath)
+    if (!mod?.default) throw new Error(`Module ${filepath} does not export a default export`)
     // eslint-disable-next-line new-cap
-    mod = new mod()
-
+    mod = new mod.default()
     this.register(mod, filepath)
     return mod
   }
@@ -61,21 +59,23 @@ class BaseHandler extends EventEmitter {
   }
 
   loadAll () {
-    const filepaths = BaseHandler.readdirRecursive(this.path)
+    const filepaths = this.#readdirRecursive(this.path)
     for (let filepath of filepaths) {
       filepath = path.resolve(filepath)
       this.load(filepath)
     }
   }
 
-  static readdirRecursive (directory: string): string[] {
-    const result: string[] = []
-    const files = readdirSync(directory)
-    for (const file of files) {
-      const filepath = path.join(directory, file)
-      if (statSync(filepath).isDirectory()) this.readdirRecursive(filepath)
-      else result.push(filepath)
-    }
+  #readdirRecursive (directory: string): string[] {
+    const result: string[] = [];
+    (function read (dir: string) {
+      const files = readdirSync(dir)
+      for (const file of files) {
+        const filepath = path.join(dir, file)
+        if (statSync(filepath).isDirectory()) read(filepath)
+        else result.push(filepath)
+      }
+    }(directory))
     return result
   }
 }
