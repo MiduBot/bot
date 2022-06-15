@@ -11,11 +11,11 @@ client.on('messageCreate', async (message) => {
   const args = message.content.slice(prefix.length).trim().split(/ +/g)
   const commandName = args?.shift()?.toLowerCase()
   const command = client.commandHandler.modules.find(m => m.aliases.includes(`${commandName}`))
-  console.log('Command', command)
-  console.log('CommandName', commandName)
   if (!command) return
 
   try {
+    command.client = client
+    command.handler = client.commandHandler
     command.run(message, args)
   } catch (error) {
     console.error(error)
