@@ -1,9 +1,11 @@
 import CommandHandler from './commands/CommandHandler'
 
 import { Client } from 'discord.js'
+import src from '../utils/src'
 
 class MiduClient extends Client {
   commandHandler: CommandHandler
+  src: typeof src
   constructor () {
     super({
       intents: [Number(process.env.DISCORD_INTENTS)]
@@ -12,6 +14,7 @@ class MiduClient extends Client {
       console.log('🥳 Bot is ready!')
     })
     this.commandHandler = new CommandHandler(this)
+    this.src = src
     this.start()
   }
 
