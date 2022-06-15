@@ -13,20 +13,17 @@ abstract class Command extends BaseModule {
   description: string
   usage: string
   onlyOwner: boolean
-  __filepath: string
   category: string
 
-  constructor (id: string, { aliases, description, usage, onlyOwner, category }: CommandData) {
+  constructor (id: string, { aliases = [], description = '', usage = '', onlyOwner = false, category = 'default' }: CommandData) {
     super(id, {
       category
     })
-    this.aliases = []
-    this.description = ''
-    this.usage = ''
-    this.onlyOwner = false
-
-    this.__filepath = ''
-    this.category = ''
+    this.aliases = aliases
+    this.description = description
+    this.usage = usage
+    this.onlyOwner = onlyOwner
+    this.category = category
   }
 
   abstract run (message: Message, args: string[]): void
